@@ -1,0 +1,87 @@
+---
+env: dev
+server:
+  port: 8080
+  https:
+    key: "localhost.key"
+    cert: "localhost.cert"
+    requestCert: false
+    rejectUnauthorized: false
+  cors:
+    whitelist: []
+  rate-limit:
+    windowMs: 60 * 1000
+    max: 100
+log:
+  level: http
+db:
+  dialect: sqlite
+  storage: "db.sqlite"
+  logging: false
+jwt:
+  algorithm: RS512
+  issuer: rest-skeleton-js
+  audience: localhost
+  privateKey: "private.dev.pem"
+  publicKey: "public.dev.pem"
+  auth:
+    expiresIn: 60*60 #1h
+  refresh:
+    expiresIn: 60*60*24 #1day
+---
+env: prod
+server:
+  port: 8080
+  https:
+    key: "my-key.key"
+    cert: "my-cert.cert"
+    requestCert: true
+    rejectUnauthorized: true
+  cors:
+    whitelist: []
+  rate-limit:
+    windowMs: 60 * 1000
+    max: 100
+log:
+  level: http
+db:
+  username: root
+  password: pass123
+  database: rest-skeleton-js
+  host: localhost
+  dialect: mysql
+  dialectOptions:
+    ssl:
+      ca: "mysql-ca-master.crt"
+  logging: false
+jwt:
+  algorithm: RS512
+  issuer: rest-skeleton-js
+  audience: mywebsite.com
+  privateKey: "private.dev.pem"
+  publicKey: "public.dev.pem"
+  auth:
+    expiresIn: 60*60 #1h
+  refresh:
+    expiresIn: 60*60*24 #1day
+---
+env: test
+server:
+  rate-limit:
+    max: 0
+log:
+  level: silly
+db:
+  dialect: sqlite
+  storage: ":memory:"
+  logging: true
+jwt:
+  algorithm: RS512
+  issuer: rest-skeleton-js
+  audience: test
+  privateKey: "private.test.pem"
+  publicKey: "public.test.pem"
+  auth:
+    expiresIn: 30
+  refresh:
+    expiresIn: 30

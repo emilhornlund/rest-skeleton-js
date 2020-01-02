@@ -1,0 +1,13 @@
+{
+    "watch": [
+        "src",
+        "config.yml"
+    ],
+    "ext": "js,yml",
+    "ignore": [
+        "test/*",
+        "src/init.js"
+    ],
+    "exec": "node ./src/index.js",
+    "verbose": false
+}

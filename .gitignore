@@ -1,0 +1,11 @@
+/.idea/
+/.nyc_output/
+/node_modules
+/logs
+/config.yml
+/sequelize-meta.json
+/sequelize-data.json
+*.cert
+*.key
+*.pem
+*.sqlite
